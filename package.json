@@ -18,8 +18,6 @@
   "dependencies": {
     "underscore": "1.4.x",
     "jquery": "2.1.1",
-    "abaculus": "1.0.0",
-    "leaflet.locationfilter": "0.1.0",
     "mapbox.js": "^2.1.4"
   }
 }

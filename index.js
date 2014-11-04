@@ -1,22 +1,28 @@
-require('jquery');
 require('mapbox.js');
+var $ = require('jquery');
 var _ = require('underscore');
-var locationFilter = require('leaflet.locationfilter');
+var areaSelect = require('./ext/leaflet-areaselect/src/leaflet-areaselect.js');
 
+// Initialize map
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww';
 var map = L.mapbox.map('map', 'saman.2os3v7vi');
 
-var locationFilter = new L.LocationFilter().addTo(map);
+var areaSelect = L.areaSelect({width:160, height:200, keepAspectRatio:true});
+areaSelect.addTo(map);
 
-locationFilter.on("change", function (e) {
-    // Do something when the bounds change.
-    // Bounds are available in `e.bounds`.
+// Get a callback when the bounds change
+areaSelect.on("change", function() {
+    var bounds = this.getBounds();
+
+    // Assemble params for rendering big image
+    var params = {
+        zoom: map.getZoom(),
+        scale: 8.3125, // 300 dpi
+        bbox: [bounds.getSouthWest().lng,bounds.getSouthWest().lat,bounds.getNorthEast().lng,bounds.getNorthEast().lat],
+        format: 'png',
+        quality: 256
+    }
+    console.log(params);
 });
 
-locationFilter.on("enabled", function () {
-    // Do something when enabled.
-});
-
-locationFilter.on("disabled", function () {
-    // Do something when disabled.
-});
+// Maybe someday...
