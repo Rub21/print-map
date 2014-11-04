@@ -1,0 +1,24 @@
+{
+  "name": "print-map",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "",
+  "scripts": {
+    "start": "watchify ./index.js -o ./build/bundle.js & serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mapbox/mapbox-studio.git"
+  },
+  "devDependencies": {
+    "browserify": "~2.12.0",
+    "uglify-js": "~2.2.5",
+    "watchify": "^2.1.0"
+  },
+  "dependencies": {
+    "underscore": "1.4.x",
+    "jquery": "2.1.1",
+    "abaculus": "1.0.0",
+    "leaflet.locationfilter": "0.1.0"
+  }
+}
