@@ -2,8 +2,6 @@ require('jquery');
 require('mapbox.js');
 var _ = require('underscore');
 var locationFilter = require('leaflet.locationfilter');
-var abaculus = require('abaculus');
-
 
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww';
 var map = L.mapbox.map('map', 'saman.2os3v7vi');
