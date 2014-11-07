@@ -2,17 +2,32 @@
 <html>
 <head>
   <meta charset='UTF-8'/>
+  <link href='ext/leaflet-areaselect/src/leaflet-areaselect.css' rel='stylesheet' />
   <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+  <link href='css/site.css' rel='stylesheet' />
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
-  <link href='js/leaflet-areaselect/src/leaflet-areaselect.css' rel='stylesheet' />
   <title>Map</title>
 </head>
+<body class='clip'>
+  <span id='show-image' class='hidden show-image'></span>
+  <span id='show-map' class='hidden show-image'></span>
 
-<body>
 
-<div id='map' class='pin-left pin-right'></div>
-<a href='#' class='button pin-topright js-getimage'>Select</a>
+  <div class='pick-map animate pin-right pin-left'>
+    <a href='#show-image' class='col4 getimage top-button button pin-top js-getimage'>Start</a>
+  </div>
+
+  <div class='show-map animate pin-right pin-left'>
+    <div id='map' class='animate pin-left pin-right'></div>
+    <a href='#show-image' class='col4 getimage top-button button pin-top js-getimage'>Select</a>
+  </div>
+
+  <div class='show-image center animate pin-right pin-left fill-white'>
+    <a href='#show-image' class='col4 top-button button pin-top js-getimage'>Send</a>
+    <div class='map-image pin-top center-xy'><img src class='js-map'/></div>
+    <a href='#show-map' class='col4 bottom-button button stroke pin-bottom'>Back</a>
+  </div>
+
 <script src='build/bundle.js'></script>
-
 </body>
 </html>

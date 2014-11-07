@@ -176,29 +176,29 @@ var $ = require('jquery');
 var _ = require('underscore');
 var areaSelect = require('./ext/leaflet-areaselect/src/leaflet-areaselect.js');
 
-// Initialize map
-L.mapbox.accessToken = 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww';
-var map = L.mapbox.map('map', 'saman.2os3v7vi');
+// Configure
+document.location.hash = '';
 
-var areaSelect = L.areaSelect({width:160, height:200, keepAspectRatio:true});
+var config = {
+  token: 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww',
+  mapid: 'saman.2os3v7vi'
+};
+
+// Initialize map
+L.mapbox.accessToken = config.token;
+var map = L.mapbox.map('map', config.mapid, {zoomControl: false});
+var areaSelect = L.areaSelect({width:480, height:600, keepAspectRatio:true});
 areaSelect.addTo(map);
 
-// Get a callback when the bounds change
-areaSelect.on("change", function() {
-    var bounds = this.getBounds();
+areaSelect.on('change', function() {
+  var bounds = this.getBounds();
 
-    // Assemble params for rendering big image
-    var params = {
-        zoom: map.getZoom(),
-        scale: 8.3125, // 300 dpi
-        bbox: [bounds.getSouthWest().lng,bounds.getSouthWest().lat,bounds.getNorthEast().lng,bounds.getNorthEast().lat],
-        format: 'png',
-        quality: 256
-    }
-    console.log(params);
+  $('.js-getimage').on('click', function() {
+    var url = 'http://api.tiles.mapbox.com/v4/' + config.mapid + '/' + bounds.getCenter().lng + ',' + bounds.getCenter().lat + ',' + map.getZoom() + '/480x600.png?access_token=' + config.token
+    $('.js-map').attr('src', url);
+  });
+
 });
-
-// Maybe someday...
 
 },{"./ext/leaflet-areaselect/src/leaflet-areaselect.js":"/Users/saman/work_repos/print-map/ext/leaflet-areaselect/src/leaflet-areaselect.js","jquery":"/Users/saman/work_repos/print-map/node_modules/jquery/dist/jquery.js","mapbox.js":"/Users/saman/work_repos/print-map/node_modules/mapbox.js/src/index.js","underscore":"/Users/saman/work_repos/print-map/node_modules/underscore/underscore.js"}],"/Users/saman/work_repos/print-map/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
 /*!
@@ -21690,7 +21690,7 @@ if (typeof module !== 'undefined') {
 }
 
 },{}],"/Users/saman/work_repos/print-map/node_modules/mapbox.js/package.json":[function(require,module,exports){
-module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
+module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports=module.exports={
   "author": {
     "name": "Mapbox"
   },
@@ -21737,7 +21737,7 @@ module.exports=module.exports=module.exports=module.exports=module.exports=modul
     "url": "https://github.com/mapbox/mapbox.js/issues"
   },
   "_id": "mapbox.js@2.1.4",
-  "_from": "mapbox.js@"
+  "_from": "mapbox.js@^2.1.4"
 }
 
 },{}],"/Users/saman/work_repos/print-map/node_modules/mapbox.js/src/config.js":[function(require,module,exports){
