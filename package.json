@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "",
   "scripts": {
-    "start": "watchify ./index.js -o ./build/bundle.js & serve"
+    "start": "watchify ./index.js -o ./build/bundle.js --debug & serve"
   },
   "repository": {
     "type": "git",

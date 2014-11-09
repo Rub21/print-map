@@ -1,28 +1,49 @@
 require('mapbox.js');
 var $ = require('jquery');
-var _ = require('underscore');
-var areaSelect = require('./ext/leaflet-areaselect/src/leaflet-areaselect.js');
 
-// Configure
 document.location.hash = '';
 
-var config = {
-  token: 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww',
-  mapid: 'saman.2os3v7vi'
+// TODO
+// 1. Allow user to pick from set of maps
+// 2. Add bookmarks + search
+// 3. Integate with print API
+
+function app(maps, bookmarks, size, token) {
+    L.mapbox.accessToken = token;
+
+    var map = L.mapbox.map('map', maps[0], {zoomControl: false});
+
+    $('.js-getimage').on('click', makeStatic);
+
+    $('.js-rotate').on('click', function() {
+        size.reverse();
+        makeStatic();
+    });
+
+    map.on('moveend', function() {
+        if (window.location.hash === '#show-image') {
+            makeStatic();
+        }
+    });
+
+    function makeStatic() {
+
+        $('body').addClass('loading');
+        window.setTimeout(function() {
+            $('body').removeClass('loading');
+        }, 500);
+
+        var url = 'http://api.tiles.mapbox.com/v4/' +
+            maps[0] + '/' +
+            map.getCenter().lng + ',' +
+            map.getCenter().lat + ',' +
+            map.getZoom() + '/' +
+            size.join('x') + '@2x.png?access_token=' +
+            token;
+        $('.js-map').attr('src', url);
+    };
 };
 
-// Initialize map
-L.mapbox.accessToken = config.token;
-var map = L.mapbox.map('map', config.mapid, {zoomControl: false});
-var areaSelect = L.areaSelect({width:480, height:600, keepAspectRatio:true});
-areaSelect.addTo(map);
+var token = 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww';
+app(['saman.2os3v7vi'],[],[480,600],token);
 
-areaSelect.on('change', function() {
-  var bounds = this.getBounds();
-
-  $('.js-getimage').on('click', function() {
-    var url = 'http://api.tiles.mapbox.com/v4/' + config.mapid + '/' + bounds.getCenter().lng + ',' + bounds.getCenter().lat + ',' + map.getZoom() + '/480x600.png?access_token=' + config.token
-    $('.js-map').attr('src', url);
-  });
-
-});

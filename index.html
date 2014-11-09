@@ -9,23 +9,24 @@
   <title>Map</title>
 </head>
 <body class='clip'>
-  <span id='show-image' class='hidden show-image'></span>
-  <span id='show-map' class='hidden show-image'></span>
+  <span id='show-image' class='hidden'></span>
+  <span id='show-map' class='hidden'></span>
 
-
-  <div class='pick-map animate pin-right pin-left'>
-    <a href='#show-image' class='col4 getimage top-button button pin-top js-getimage'>Start</a>
+  <div class='pick-map pin-right pin-left animate hidden'>
+    <a href='#show-image' class='col4 top-button button pin-top'>Start</a>
   </div>
 
-  <div class='show-map animate pin-right pin-left'>
-    <div id='map' class='animate pin-left pin-right'></div>
-    <a href='#show-image' class='col4 getimage top-button button pin-top js-getimage'>Select</a>
-  </div>
+  <div id='map' class='pin-left pin-right'></div>
 
-  <div class='show-image center animate pin-right pin-left fill-white'>
-    <a href='#show-image' class='col4 top-button button pin-top js-getimage'>Send</a>
-    <div class='map-image pin-top center-xy'><img src class='js-map'/></div>
-    <a href='#show-map' class='col4 bottom-button button stroke pin-bottom'>Back</a>
+  <a href='#show-image' class='col3 center-block button pin-bottom space-bottom2 js-getimage get-image'>Choose</a>
+
+  <div class='show-image dark pin-right pin-left fill-darken3 animate'>
+    <div class='col4 space-bottom2 pill center-block pin-bottom'>
+      <a href='#show-image' class='stroke icon refresh button col6 js-rotate'>Rotate</a>
+      <a href='#show-image' class='stroke icon picture button col6'>Order Print</a>
+    </div>
+    <a href='#show-map' class='icon x quiet big pin-topright margin1r z10 space-top2 inline'></a>
+    <div class='map-image center pin-top center-block'><img src class='js-map'/></div>
   </div>
 
 <script src='build/bundle.js'></script>
