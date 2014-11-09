@@ -34,9 +34,10 @@ function app(mapid, sizes, token) {
         var size = [$selection.attr('height')*75,$selection.attr('width')*75];
 
         $('body').addClass('loading');
-        window.setTimeout(function() {
+        $('.js-map').load(function() {
             $('body').removeClass('loading');
-        }, 500);
+        });
+
 
         var url = 'http://api.tiles.mapbox.com/v4/' +
             mapid + '/' +
