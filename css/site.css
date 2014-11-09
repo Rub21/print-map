@@ -6,6 +6,16 @@
   transform: translateY(-50%);
 }
 
+.pill .button.stroke + .button {
+  border-left: 0;
+}
+
+/* leaflet */
+.leaflet-container .leaflet-control-attribution {
+  border-top-left-radius: 3px;
+  font-family: 'Open Sans Regular', sans-serif;
+}
+
 /* state management */
 .show-image {
   z-index: -1;
@@ -27,6 +37,15 @@
 
 #show-image:target ~ .get-image {
   opacity: 0;
+}
+
+.landscape .hide-in-landscape,
+.show-in-landscape {
+  display: none;
+}
+
+.landscape .show-in-landscape {
+  display: inline;
 }
 
 /* page */

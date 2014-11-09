@@ -2,28 +2,24 @@
 <html>
 <head>
   <meta charset='UTF-8'/>
-  <link href='ext/leaflet-areaselect/src/leaflet-areaselect.css' rel='stylesheet' />
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
   <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
   <link href='css/site.css' rel='stylesheet' />
-  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
   <title>Map</title>
 </head>
 <body class='clip'>
   <span id='show-image' class='hidden'></span>
   <span id='show-map' class='hidden'></span>
 
-  <div class='pick-map pin-right pin-left animate hidden'>
-    <a href='#show-image' class='col4 top-button button pin-top'>Start</a>
-  </div>
-
   <div id='map' class='pin-left pin-right'></div>
 
   <a href='#show-image' class='col3 center-block button pin-bottom space-bottom2 js-getimage get-image'>Choose</a>
 
   <div class='show-image dark pin-right pin-left fill-darken3 animate'>
-    <div class='col4 space-bottom2 pill center-block pin-bottom'>
-      <a href='#show-image' class='stroke icon refresh button col6 js-rotate'>Rotate</a>
-      <a href='#show-image' class='stroke icon picture button col6'>Order Print</a>
+    <div class='col6 space-bottom2 center-block pin-bottom'>
+      <div class='js-sizes pad1x radio-pill pill col9'>
+      </div>
+      <a href='#show-image' class='icon picture button col3'>Order Print</a>
     </div>
     <a href='#show-map' class='icon x quiet big pin-topright margin1r z10 space-top2 inline'></a>
     <div class='map-image center pin-top center-block'><img src class='js-map'/></div>
