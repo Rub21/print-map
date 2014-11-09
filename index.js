@@ -5,9 +5,8 @@ var _ = require('underscore');
 document.location.hash = '';
 
 // TODO
-// 1. Allow user to prick from multiple sizes / make sizing smart
-// 2. Add search
-// 3. Integate with print API
+// 1. Add search
+// 2. Integate with print API
 function app(mapid, sizes, token) {
     L.mapbox.accessToken = token;
     var map = L.mapbox.map('map', mapid, {infocontrol: true, zoomControl: false});
@@ -54,7 +53,7 @@ function app(mapid, sizes, token) {
 var urlParams;
 (window.onpopstate = function () {
     var match,
-        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        pl     = /\+/g, // Regex for replacing addition symbol with a space
         search = /([^&=]+)=?([^&]*)/g,
         decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
         query  = window.location.search.substring(1);
