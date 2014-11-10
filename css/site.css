@@ -16,6 +16,8 @@
   font-family: 'Open Sans Regular', sans-serif;
 }
 
+.pricable.form-select.form-block { display: none;}
+
 /* state management */
 .show-image {
   z-index: -1;

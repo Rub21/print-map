@@ -8,6 +8,20 @@
   <title>Map</title>
 </head>
 <body class='clip'>
+<div id="cp-store-root" data-cp-settings='{ "access_key": "265bcd99a8e808ab4bce83e4b97b1761" }'></div>
+
+  <script>
+      (function ( d, s, id ) {
+          var js, cpJs = d.getElementsByTagName( s )[0], t = new Date();
+          if ( d.getElementById( id ) ) return;
+          js = d.createElement( s );
+          js.id = id;
+          js.setAttribute( 'data-cp-url', 'https://store.canvaspop.com' );
+          js.src = 'https://store.canvaspop.com/static/js/cpopstore.js?bust=' + t.getTime();
+          cpJs.parentNode.insertBefore( js, cpJs );
+      }( document, 'script', 'canvaspop-jssdk' ));
+  </script>
+
   <span id='show-image' class='hidden'></span>
   <span id='show-map' class='hidden'></span>
 
@@ -17,9 +31,9 @@
 
   <div class='show-image dark pin-right pin-left fill-darken3 animate'>
     <div class='col6 space-bottom2 center-block pin-bottom'>
-      <div class='js-sizes pad1x radio-pill pill col9'>
+      <div class='js-sizes radio-pill pill'>
       </div>
-      <a href='#show-image' class='icon picture button col3'>Order Print</a>
+      <a href='#show-image' data-cp-url='' class='js-buy icon picture button fr'>Order Print</a>
     </div>
     <a href='#show-map' class='icon x quiet big pin-topright margin1r z10 space-top2 inline'></a>
     <div class='map-image center pin-top center-block'><img src class='js-map'/></div>

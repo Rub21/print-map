@@ -32,10 +32,12 @@ function app(mapid, sizes, token) {
     function makeStatic() {
         var $selection = $('.js-size-toggle:checked');
         var size = [$selection.attr('height')*75,$selection.attr('width')*75];
+        // Eventually, I'll want @4x form print, 2x for preview
+        var resolution = 2;
 
-        $('body').addClass('loading');
+        $('.js-map').parent().addClass('loading');
         $('.js-map').load(function() {
-            $('body').removeClass('loading');
+            $('.js-map').parent().removeClass('loading');
         });
 
 
@@ -44,9 +46,11 @@ function app(mapid, sizes, token) {
             map.getCenter().lng + ',' +
             map.getCenter().lat + ',' +
             map.getZoom() + '/' +
-            size.join('x') + '@2x.png?access_token=' +
+            size.join('x') + '@' +
+            resolution + 'x.png?access_token=' +
             token;
         $('.js-map').attr('src', url);
+        $('.js-buy').attr('data-cp-url',url);
     };
 
 };
@@ -67,10 +71,7 @@ var urlParams;
 var id = urlParams.id;
 var token = 'pk.eyJ1Ijoic2FtYW4iLCJhIjoiS1ptdnd0VSJ9.19qza-F_vXkgpnh80oZJww';
 
-// 8 x 10  | 300pdi 2400 x 3000 | @ 150dpi 1200 x 1500
-// 12 x 12 | 300pdi 3600 x 3600 | @ 150dpi 1800 x 1800
-// 12 x 16 | 300pdi 3600 x 4800 | @ 150dpi 1800 x 2400
-// sizes are in inches
-var sizes = [[8,10],[12,12],[12,16]];
+// CANVAS POP IS DUMB ABOUT RESOLUTION >_<
+var sizes = [[10,13],[14,18]];
 
 app(id,sizes,token);
